@@ -11,13 +11,17 @@ const md = require('motes-md')({
 });
 
 console.log(md('# Markdown'));
+
+// you can pass an object to get the some values from the parsing
+const env = {};
+const html = md('# Markdown', env);
+console.log(html, env);
 ```
 
 ## Credits
 
 motes-md uses the following packages:
 
-- [highlight.js](https://www.npmjs.com/packages/highlight.js)
 - [markdown-it](https://www.npmjs.com/packages/markdown-it)
 - [markdown-it-abbr](https://www.npmjs.com/packages/markdown-it-abbr)
 - [markdown-it-anchor](https://www.npmjs.com/packages/markdown-it-anchor)
@@ -29,14 +33,23 @@ motes-md uses the following packages:
 - [markdown-it-container](https://www.npmjs.com/packages/markdown-it-container)
 - [markdown-it-deflist](https://www.npmjs.com/packages/markdown-it-deflist)
 - [markdown-it-emoji](https://www.npmjs.com/packages/markdown-it-emoji)
+- [markdown-it-expand-tabs](https://www.npmjs.com/packages/markdown-it-expand-tabs)
 - [markdown-it-footnote](https://www.npmjs.com/packages/markdown-it-footnote)
 - [markdown-it-hashmention](https://www.npmjs.com/packages/markdown-it-hashmention)
+- [markdown-it-highlighted](https://www.npmjs.com/packages/markdown-it-highlighted)
+- [markdown-it-highlightjs](https://www.npmjs.com/packages/markdown-it-highlightjs)
+- [markdown-it-imsize](https://www.npmjs.com/packages/markdown-it-imsize)
 - [markdown-it-ins](https://www.npmjs.com/packages/markdown-it-ins)
 - [markdown-it-mark](https://www.npmjs.com/packages/markdown-it-mark)
+- [markdown-it-math](https://www.npmjs.com/packages/markdown-it-math)
+- [markdown-it-playground](https://www.npmjs.com/packages/markdown-it-playground)
+- [markdown-it-smartarrows](https://www.npmjs.com/packages/markdown-it-smartarrows)
 - [markdown-it-sub](https://www.npmjs.com/packages/markdown-it-sub)
 - [markdown-it-sup](https://www.npmjs.com/packages/markdown-it-sup)
 - [markdown-it-table-of-contents](https://www.npmjs.com/packages/markdown-it-table-of-contents)
 - [markdown-it-task-checkbox](https://www.npmjs.com/packages/markdown-it-task-checkbox)
+- [markdown-it-title](https://www.npmjs.com/packages/markdown-it-title)
+- [markdown-it-underline](https://www.npmjs.com/packages/markdown-it-underline)
 
 ## License
 

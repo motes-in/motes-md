@@ -2,9 +2,9 @@
 
 module.exports = exports = ({
   hashtag     = '/tags/',
-  mention     = '/users/'
+  mention     = '/users/',
+  tocLevel    = [1,2]
 } = {}) => {
-  const hljs       = require('highlight.js')
   const md = require('markdown-it')({
       html:        true,
       xhtmlOut:    false,
@@ -13,16 +13,7 @@ module.exports = exports = ({
       linkify:     true,
       linkTarget:  '',
       typographer: true,
-      quotes:      '“”‘’',
-
-      highlight(str, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-          try {
-            return hljs.highlight(lang, str).value;
-          } catch (__) {}
-        }
-        return '';
-      }
+      quotes:      '“”‘’'
     })
     .use(require('markdown-it-abbr'))
     .use(require('markdown-it-anchor'), {
@@ -47,6 +38,7 @@ module.exports = exports = ({
     .use(require('markdown-it-container'), 'container')
     .use(require('markdown-it-deflist'))
     .use(require('markdown-it-emoji'))
+    .use(require('markdown-it-expand-tabs'), {tabWidth: 2})
     .use(require('markdown-it-footnote'))
     .use(require('markdown-it-hashmention'), {
       hashtags: {
@@ -56,11 +48,22 @@ module.exports = exports = ({
         href: mention,
       },
     })
+    .use(require('markdown-it-highlighted'))
+    .use(require('markdown-it-highlightjs'), {
+      auto: true,
+      code: true
+    })
+    .use(require('markdown-it-imsize'))
     .use(require('markdown-it-ins'))
     .use(require('markdown-it-mark'))
+    .use(require('markdown-it-math'))
+    .use(require('markdown-it-playground'))
+    .use(require('markdown-it-smartarrows'))
     .use(require('markdown-it-sub'))
     .use(require('markdown-it-sup'))
-    .use(require('markdown-it-table-of-contents'))
+    .use(require('markdown-it-table-of-contents'), {
+      includeLevel: tocLevel
+    })
     .use(require('markdown-it-task-checkbox'), {
       disabled: false,
       divWrap: true,
@@ -68,9 +71,11 @@ module.exports = exports = ({
       idPrefix: 'task-checkbox-',
       ulClass: 'task-list',
       liClass: 'task-list-item'
-    });
+    })
+    .use(require('markdown-it-title'), 0)
+    .use(require('markdown-it-underline'));
 
-  return (input) => {
-    return md.render(input);
+  return (input, env = {}) => {
+    return md.render(input, env);
   };
 };
