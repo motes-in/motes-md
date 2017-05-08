@@ -3,7 +3,10 @@
 module.exports = exports = ({
   hashtag     = '/tags/',
   mention     = '/users/',
-  tocLevel    = [1,2]
+  tocLevel    = [1,2],
+  containers  = [
+    'container',
+  ]
 } = {}) => {
   const md = require('markdown-it')({
       html:        true,
@@ -38,7 +41,6 @@ module.exports = exports = ({
       divClass: 'checkbox',
       idPrefix: 'checkbox-'
     })
-    .use(require('markdown-it-container'), 'container')
     .use(require('markdown-it-custom-block'), {
       video (url) {
         return `<div class="block-embed block-embed-video">
@@ -84,6 +86,10 @@ module.exports = exports = ({
     })
     .use(require('markdown-it-title'), 0)
     .use(require('markdown-it-underline'));
+
+  for (let container of containers) {
+    md.use(require('markdown-it-container'), container);
+  }
 
   return (input, env = {}) => {
     return md.render(input, env);
