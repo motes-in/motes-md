@@ -39,6 +39,13 @@ module.exports = exports = ({
       idPrefix: 'checkbox-'
     })
     .use(require('markdown-it-container'), 'container')
+    .use(require('markdown-it-custom-block'), {
+      video (url) {
+        return `<div class="block-embed block-embed-video">
+        <video src="${url}"></video>
+      </div>`;
+      }
+    })
     .use(require('markdown-it-deflist'))
     .use(require('markdown-it-emoji'))
     .use(require('markdown-it-expand-tabs'), {tabWidth: 2})
