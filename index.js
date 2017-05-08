@@ -28,7 +28,10 @@ module.exports = exports = ({
     })
     .use(require('markdown-it-attrs'))
     .use(require('markdown-it-block-embed'))
-    .use(require('markdown-it-block-image'))
+    .use(require('markdown-it-block-image'), {
+      outputContainer: 'div',
+      containerClassName: "block-embed block-embed-image"
+    })
     .use(require('markdown-it-center-text'))
     .use(require('markdown-it-checkbox'), {
       divWrap: true,
