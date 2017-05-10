@@ -14,13 +14,15 @@ const md = require('motes-md')({
   ]
 });
 
-console.log(md('# Markdown'));
+console.log(md.render('# Markdown'));
 
 // you can pass an object to get the some values from the parsing
 const env = {};
-const html = md('# Markdown', env);
+const html = md.render('# Markdown', env);
 console.log(html, env);
 ```
+
+It returns an instance of `markdown-it`, so it's possible to to add more plugins.
 
 ## Credits
 

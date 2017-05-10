@@ -91,7 +91,5 @@ module.exports = exports = ({
     md.use(require('markdown-it-container'), container);
   }
 
-  return (input, env = {}) => {
-    return md.render(input, env);
-  };
+  return md;
 };
