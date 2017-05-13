@@ -41,13 +41,6 @@ module.exports = exports = ({
       divClass: 'checkbox',
       idPrefix: 'checkbox-'
     })
-    .use(require('markdown-it-custom-block'), {
-      video (url) {
-        return `<div class="block-embed block-embed-video">
-        <video src="${url}"></video>
-      </div>`;
-      }
-    })
     .use(require('markdown-it-deflist'))
     .use(require('markdown-it-emoji'))
     .use(require('markdown-it-expand-tabs'), {tabWidth: 2})
@@ -85,7 +78,14 @@ module.exports = exports = ({
       liClass: 'task-list-item'
     })
     .use(require('markdown-it-title'), 0)
-    .use(require('markdown-it-underline'));
+    .use(require('markdown-it-underline'))
+    .use(require('markdown-it-custom-block'), {
+      video (url) {
+        return `<div class="block-embed block-embed-video">
+          <video src="${url}"></video>
+        </div>`;
+      }
+    });
 
   for (let container of containers) {
     md.use(require('markdown-it-container'), container);
