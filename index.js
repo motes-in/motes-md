@@ -80,9 +80,19 @@ module.exports = exports = ({
     .use(require('markdown-it-title'), 0)
     .use(require('markdown-it-underline'))
     .use(require('markdown-it-custom-block'), {
-      video (url) {
+      video(url) {
         return `<div class="block-embed block-embed-video">
-          <video src="${url}"></video>
+          <video src="${url}" preload="auto"></video>
+        </div>`;
+      },
+      'video-controls'(url) {
+        return `<div class="block-embed block-embed-video">
+          <video src="${url}" preload="auto" controls></video>
+        </div>`;
+      },
+      audio(url) {
+        return `<div class="block-embed block-embed-audio">
+          <audio src="${url}" preload="auto" controls></audio>
         </div>`;
       }
     });
