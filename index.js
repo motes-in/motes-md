@@ -95,6 +95,45 @@ module.exports = exports = ({
           <audio src="${url}" preload="auto" controls></audio>
         </div>`;
       }
+    })
+    .use(require('markdown-it-container'), 'custom', {
+      validate: function(params) {
+        return params.trim().match(/^custom/);
+      },
+      render: function (tokens, idx) {
+        const parts = tokens[idx].info.replace(/custom/, '').trim().split(' ');
+        const element = parts.shift() || 'div';
+
+        if (tokens[idx].nesting === 1) {
+          let id;
+          let classes = [];
+          let attributes = '';
+
+          for (let part of parts) {
+            if (/^\#/.test(part)) {
+              id = part.replace(/^\#/, '');
+            }
+            if (/^\./.test(part)) {
+              classes.push(part.replace(/^\./, ''));
+            }
+          }
+
+          if (id) {
+            attributes += ` id="${id}"`;
+          }
+
+          if (classes.length) {
+            attributes += ` class="${classes.join(' ')}"`;
+          }
+
+          // opening tag
+          return `<${element}${attributes}>\n`;
+        }
+        else {
+          // closing tag
+          return `</${element}>\n`;
+        }
+      }
     });
 
   for (let container of containers) {
