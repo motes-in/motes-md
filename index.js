@@ -8,6 +8,7 @@ module.exports = exports = ({
     'container',
   ]
 } = {}) => {
+  const temp = {};
   const md = require('markdown-it')({
       html:        true,
       xhtmlOut:    false,
@@ -102,7 +103,7 @@ module.exports = exports = ({
       },
       render: function (tokens, idx) {
         const parts = tokens[idx].info.replace(/custom/, '').trim().split(' ');
-        const element = parts.shift() || 'div';
+        temp.customElement = parts.shift() || temp.customElement || 'div';
 
         if (tokens[idx].nesting === 1) {
           let id;
@@ -127,11 +128,11 @@ module.exports = exports = ({
           }
 
           // opening tag
-          return `<${element}${attributes}>\n`;
+          return `<${temp.customElement}${attributes}>\n`;
         }
         else {
           // closing tag
-          return `</${element}>\n`;
+          return `</${temp.customElement}>\n`;
         }
       }
     });
