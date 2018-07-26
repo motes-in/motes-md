@@ -1,6 +1,6 @@
 {
   "name": "motes-md",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Markdown parser for Motes.in",
   "main": "index.js",
   "scripts": {
