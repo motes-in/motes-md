@@ -8,7 +8,9 @@ module.exports = exports = ({
     'container',
   ]
 } = {}) => {
-  const temp = {};
+  const temp = {
+    customElement: {},
+  };
   const md = require('markdown-it')({
       html:        true,
       xhtmlOut:    false,
@@ -103,7 +105,7 @@ module.exports = exports = ({
       },
       render: function (tokens, idx) {
         const parts = tokens[idx].info.replace(/custom/, '').trim().split(' ');
-        temp.customElement = parts.shift() || temp.customElement || 'div';
+        temp.customElement[tokens[idx].level] = parts.shift() || temp.customElement[tokens[idx].level] || 'div';
 
         if (tokens[idx].nesting === 1) {
           let id;
@@ -128,11 +130,11 @@ module.exports = exports = ({
           }
 
           // opening tag
-          return `<${temp.customElement}${attributes}>\n`;
+          return `<${temp.customElement[tokens[idx].level]}${attributes}>\n`;
         }
         else {
           // closing tag
-          return `</${temp.customElement}>\n`;
+          return `</${temp.customElement[tokens[idx].level]}>\n`;
         }
       }
     });
