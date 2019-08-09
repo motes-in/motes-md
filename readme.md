@@ -7,11 +7,11 @@ Markdown parser for Motes.in.
 ```javascript
 const md = require('motes-md')({
   hashtag: '/tags/', // default prefix for hashtag url
-  mention: '/users/' // default prefix for mention url
+  mention: '/users/', // default prefix for mention url
   tocLevel: [1,2], // default level for table-of-content
   containers: [ // default container classes
     'container',
-  ]
+  ],
 });
 
 console.log(md.render('# Markdown'));
