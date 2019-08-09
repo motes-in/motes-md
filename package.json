@@ -1,6 +1,6 @@
 {
-  "name": "motes-md",
   "version": "0.6.2",
+  "name": "@motes/md",
   "description": "Markdown parser for Motes.in",
   "main": "index.js",
   "scripts": {
@@ -8,10 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/motes-in/motes-md.git"
+    "url": "git+https://github.com/motes-in/md.git"
   },
   "author": "iamso <so@dev.so>",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "markdown-it": "^9.0.1",
     "markdown-it-abbr": "^1.0.4",

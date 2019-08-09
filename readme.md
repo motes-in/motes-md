@@ -1,4 +1,4 @@
-# motes-md
+# @motes/md
 
 Markdown parser for Motes.in.
 
