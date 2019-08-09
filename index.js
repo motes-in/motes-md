@@ -64,9 +64,12 @@ module.exports = exports = ({
     .use(require('markdown-it-imsize'))
     .use(require('markdown-it-ins'))
     .use(require('markdown-it-mark'))
+    .use(require('markdown-it-kbd'))
     .use(require('markdown-it-math'))
     .use(require('markdown-it-playground'))
     .use(require('markdown-it-smartarrows'))
+    .use(require('markdown-it-multimd-table'))
+    .use(require('markdown-it-plantuml'))
     .use(require('markdown-it-sub'))
     .use(require('markdown-it-sup'))
     .use(require('markdown-it-table-of-contents'), {
