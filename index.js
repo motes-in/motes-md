@@ -21,6 +21,7 @@ module.exports = exports = ({
       typographer: true,
       quotes:      '“”‘’'
     })
+    .use(require('markdown-it-meta'))
     .use(require('markdown-it-abbr'))
     .use(require('markdown-it-anchor'), {
       level: 1,
